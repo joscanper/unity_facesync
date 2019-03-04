@@ -21,13 +21,12 @@ namespace FaceSync
 
 			serializedObject.Update();
 
-			
-
 			FaceSyncData syncData = target as FaceSyncData;
 			float dataDuration = syncData.GetDuration();
 
 			if (GUILayout.Button("Play"))
 				PlayClip(syncData.Sound);
+
 
 			float border = 10;
 			float initY = 150;
@@ -64,7 +63,9 @@ namespace FaceSync
 			if (mSelectedKeyframe >= 0)
 			{
 				GUILayout.BeginArea(new Rect(border, initY + 30, width - (border * 2), 200));
+				
 				ShowKeyframeData(syncData.Keyframes[mSelectedKeyframe], syncData.Sound.length);
+				
 				GUILayout.EndArea();
 			}
 
@@ -74,7 +75,7 @@ namespace FaceSync
 		public void ShowKeyframeData(FaceSyncKeyframe keyframe, float maxTime)
 		{
 			keyframe.BlendSet = EditorGUILayout.ObjectField(keyframe.BlendSet, typeof(FaceSyncBlendSet), false, null) as FaceSyncBlendSet;
-			keyframe.Time = EditorGUILayout.Slider("Time", keyframe.Time, 0, maxTime);
+			keyframe.Time = EditorGUILayout.Slider("Time", keyframe.Time, 0, maxTime);	
 		}
 
 		public static void PlayClip(AudioClip clip)
