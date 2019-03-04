@@ -2,24 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 namespace FaceSync
 {
-
-	
-	public class FaceSyncKeyframe
-	{
-		public float Time;
-		public FaceSyncBlendSet BlendSet;
-		public float Value;
-		
-		public FaceSyncKeyframe(float time)
-		{
-			Time = time;
-		}
-	}
-
 	[CreateAssetMenu(fileName ="FaceSyncData", menuName = "FaceSync/Sync Data")]
 	public class FaceSyncData : ScriptableObject
 	{
