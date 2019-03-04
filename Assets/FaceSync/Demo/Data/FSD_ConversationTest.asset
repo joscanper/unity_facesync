@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Name: FSD_ConversationTest
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 4aac9f1079c85c54cbca7b00a599d0a0, type: 3}
+  Keyframes:
+  - Time: 0.5
+    BlendSet: {fileID: 0}
+    Value: 0
