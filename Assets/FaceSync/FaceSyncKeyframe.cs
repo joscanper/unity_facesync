@@ -9,10 +9,13 @@ namespace FaceSync
 		public FaceSyncBlendSet BlendSet;
 		public float Value;
 
+		// --------------------------------------------------------------------
+
 		public FaceSyncKeyframe(float time)
 		{
 			Time = time;
 		}
+		
 	}
 
 }

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5a97c85586d324e8aa80c29c84f101, type: 3}
   m_Name: BlendSet_PhonemeE
   m_EditorClassIdentifier: 
-  Label: Creepy Smile
+  Label: E
   Color: {r: 1, g: 0, b: 0, a: 0}
   BlendShapes:
   - BlendShape: {fileID: 11400000, guid: 99e61548f3ab8ce4b92a6ef5de40410a, type: 2}
