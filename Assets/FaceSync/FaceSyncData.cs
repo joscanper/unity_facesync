@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
 
 namespace FaceSync
 {
@@ -18,10 +19,11 @@ namespace FaceSync
 			for(int i = 0; i < Keyframes.Count; ++i)
 			{
 				FaceSyncKeyframe keyframe = Keyframes[i];
-				duration = Mathf.Max(keyframe.Time, duration);
+				duration = Mathf.Max(keyframe.Time + keyframe.BlendSet.GetDuration(), duration);
 			}
 			return duration;
 		}
+
 
 	}
 }

@@ -10,20 +10,16 @@ namespace FaceSync
 		[Range(0f, 1f)]
 		public float Progress;
 
-		private FaceSyncApplier mApplier;
+		private FaceSyncController mController;
 
-		// --------------------------------------------------------------------
-
-		private void Update()
+		public void Play()
 		{
-			if (!mApplier)
-				mApplier = GetComponent<FaceSyncApplier>();
+			if (!mController)
+				mController = GetComponent<FaceSyncController>();
 
-			if (Data)
-			{
-				mApplier.ApplyBlendData(Data, Progress * Data.GetDuration());
-			}
+			mController.PlayData(Data);
 		}
 
+		
 	}
 }
