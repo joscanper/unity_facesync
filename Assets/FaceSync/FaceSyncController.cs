@@ -38,7 +38,7 @@ namespace FaceSync
 		{
 			CacheComponents();
 
-			DataEntry entry = new DataEntry{
+			DataEntry entry = new DataEntry {
 				Time = 0f,
 				Data = data,
 				Duration = data.GetDuration()
@@ -58,7 +58,7 @@ namespace FaceSync
 				DataEntry entry = mDataToApply[i];
 				entry.Time += Time.deltaTime;
 				mApplier.ApplyBlendData(entry.Data, entry.Time);
-				Debug.Log("Applying : " + entry.Data.name + " Time : " + entry.Time);
+				
 				if (entry.HasFinished)
 				{
 					mDataToApply.RemoveAt(i);

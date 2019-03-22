@@ -25,7 +25,7 @@ MonoBehaviour:
         outSlope: 7.246442
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.4945732
+        time: 0.25
         value: 30
         inSlope: 0.034022443
         outSlope: 0.034022443
@@ -39,3 +39,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
+    Value: 30

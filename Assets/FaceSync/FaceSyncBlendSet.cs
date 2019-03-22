@@ -1,17 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 namespace FaceSync
 {
 	[CreateAssetMenu(fileName = "BlendSet", menuName = "FaceSync/BlendSet")]
 	public class FaceSyncBlendSet : ScriptableObject
 	{
+		private static readonly float sDefaultBlendSetDuration = 0.5f;
+
 		[Serializable]
 		public class BlendSetEntry
 		{
 			public FaceSyncBlendShapeID BlendShape;
-			public AnimationCurve Curve;
+			public float Value;
 		}
 
 		public string Label;
@@ -22,16 +24,7 @@ namespace FaceSync
 
 		public float GetDuration()
 		{
-			float duration = 0;
-			for(int i =0; i < BlendShapes.Count; ++i)
-			{
-				float entryDuration = BlendShapes[i].Curve.keys[BlendShapes[i].Curve.keys.Length - 1].time;
-				if (entryDuration > duration)
-					duration = entryDuration;
-			}
-
-			return duration;
+			return sDefaultBlendSetDuration;
 		}
 	}
-
 }

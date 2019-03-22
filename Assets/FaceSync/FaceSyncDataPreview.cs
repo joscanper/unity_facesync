@@ -7,6 +7,7 @@ namespace FaceSync
 	public class FaceSyncDataPreview : MonoBehaviour
 	{
 		public FaceSyncData Data;
+
 		[Range(0f, 1f)]
 		public float Progress;
 
@@ -19,7 +20,5 @@ namespace FaceSync
 
 			mController.PlayData(Data);
 		}
-
-		
 	}
 }

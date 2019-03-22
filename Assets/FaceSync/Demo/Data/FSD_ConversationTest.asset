@@ -11,8 +11,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e7ce8275c83384ebcf7c8ca0077530, type: 3}
   m_Name: FSD_ConversationTest
   m_EditorClassIdentifier: 
-  Sound: {fileID: 8300000, guid: 4aac9f1079c85c54cbca7b00a599d0a0, type: 3}
+  Sound: {fileID: 8300000, guid: 9894d6d3dc8652440b9f9235e8fa9286, type: 3}
   Keyframes:
-  - Time: 0.5
-    BlendSet: {fileID: 0}
-    Value: 0
+  - Time: 0.13535146
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 0.27070293
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 0.67675734
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 0.8121088
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 1.2181633
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 1.7595692
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 2.300975
+    BlendSet: {fileID: 11400000, guid: 9bcd99053dd84924fbdc3fbc4c63bc44, type: 2}
+  - Time: 2.4363265
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 2.571678
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 2.7070293
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 3.2484353
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 3.6544898
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 4.1958957
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 4.7373013
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 4.872653
+    BlendSet: {fileID: 11400000, guid: c7a86650d38472447bb5b02d53b91bb3, type: 2}
+  - Time: 5.143356
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 5.4140587
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
+  - Time: 5.820113
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 5.955465
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 6.3615193
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 6.632222
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}

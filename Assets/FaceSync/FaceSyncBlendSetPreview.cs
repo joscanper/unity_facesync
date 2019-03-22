@@ -24,7 +24,7 @@ namespace FaceSync
 				foreach (FaceSyncBlendSet.BlendSetEntry entry in BlendSet.BlendShapes)
 				{
 					if (entry != null)
-						mApplier.ApplyBlendShape(entry.BlendShape, entry.Curve.Evaluate(Progress));
+						mApplier.ApplyBlendShape(entry.BlendShape, entry.Value);
 				}
 			}
 		}

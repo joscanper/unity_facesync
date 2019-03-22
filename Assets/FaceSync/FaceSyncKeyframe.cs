@@ -7,8 +7,7 @@ namespace FaceSync
 	{
 		public float Time;
 		public FaceSyncBlendSet BlendSet;
-		public float Value;
-
+		
 		// --------------------------------------------------------------------
 
 		public FaceSyncKeyframe(float time)

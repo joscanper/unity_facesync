@@ -39,6 +39,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
+    Value: 37
   - BlendShape: {fileID: 11400000, guid: f8c22a90fc01aa94987b8db054b34111, type: 2}
     Curve:
       serializedVersion: 2
@@ -64,3 +65,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
+    Value: 60

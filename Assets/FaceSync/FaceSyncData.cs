@@ -9,6 +9,7 @@ namespace FaceSync
 	public class FaceSyncData : ScriptableObject
 	{
 		public AudioClip Sound;
+		public string ReferenceText;
 		public List<FaceSyncKeyframe> Keyframes = new List<FaceSyncKeyframe>();
 
 		// --------------------------------------------------------------------
@@ -19,7 +20,8 @@ namespace FaceSync
 			for(int i = 0; i < Keyframes.Count; ++i)
 			{
 				FaceSyncKeyframe keyframe = Keyframes[i];
-				duration = Mathf.Max(keyframe.Time + keyframe.BlendSet.GetDuration(), duration);
+				if (keyframe.BlendSet)
+					duration = Mathf.Max(keyframe.Time + keyframe.BlendSet.GetDuration(), duration);
 			}
 			return duration;
 		}
