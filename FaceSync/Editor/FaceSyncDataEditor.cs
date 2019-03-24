@@ -27,15 +27,21 @@ namespace FaceSync
 			FaceSyncData syncData = target as FaceSyncData;
 			float dataDuration = syncData.GetDuration();
 
-			syncData.Sound = EditorGUILayout.ObjectField(syncData.Sound, typeof(AudioClip), false, null) as AudioClip;
+            EditorGUI.BeginChangeCheck();
+            
+            syncData.Sound = EditorGUILayout.ObjectField(syncData.Sound, typeof(AudioClip), false, null) as AudioClip;
 
 			if (GUILayout.Button("Play"))
 				PlayClip(syncData.Sound);
 
 			EditorGUILayout.Separator();
-			
-			syncData.ReferenceText = EditorGUILayout.TextArea(syncData.ReferenceText);
-			if (GUILayout.Button("Autodetect"))
+
+            syncData.ReferenceText = EditorGUILayout.TextArea(syncData.ReferenceText);
+
+            if (EditorGUI.EndChangeCheck())
+                EditorUtility.SetDirty(target);
+
+            if (GUILayout.Button("Autodetect"))
 				AutodetectWithRules();
 
 			if (GUILayout.Button("Clear"))
@@ -58,7 +64,7 @@ namespace FaceSync
 				FaceSyncKeyframe keyframe = syncData.Keyframes[i];
 				float x = (width - (border * 2)) * (keyframe.Time / dataDuration);
 				string label = keyframe.BlendSet ? keyframe.BlendSet.Label : "!";
-				GUI.backgroundColor = i == mSelectedKeyframe ? Color.cyan : Color.black;
+				GUI.backgroundColor = i == mSelectedKeyframe ? Color.cyan : Color.grey;
 				if (GUI.Button(new Rect(border + x - 10, initY - 20, 20, 18), label))
 				{
 					mSelectedKeyframe = i;
