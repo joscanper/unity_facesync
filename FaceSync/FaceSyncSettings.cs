@@ -25,7 +25,8 @@ namespace FaceSync
 				return mSettings;
 			}
 
-			string path = "Assets/FaceSync/Data/Settings.asset";
+			string path = "Assets/FaceSync/FaceSync/Data/Settings.asset";
+			
 			mSettings = AssetDatabase.LoadAssetAtPath(path, typeof(FaceSyncSettings)) as FaceSyncSettings;
 
 			if (mSettings == null)

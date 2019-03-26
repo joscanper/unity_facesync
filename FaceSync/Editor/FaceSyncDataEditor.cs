@@ -10,6 +10,11 @@ namespace FaceSync
 	public class FaceSyncDataEditor : Editor
 	{
 		private int mSelectedKeyframe;
+		private float mClipStartTime;
+
+		private readonly float sBorder = 10;
+		private readonly float sInitY = 200;
+		private float mWidth;
 
 		public FaceSyncDataEditor()
 		{
@@ -20,20 +25,13 @@ namespace FaceSync
 
 		public override void OnInspectorGUI()
 		{
-			//base.OnInspectorGUI();
-
 			serializedObject.Update();
+			mWidth = EditorGUIUtility.currentViewWidth;
 
 			FaceSyncData syncData = target as FaceSyncData;
-			float dataDuration = syncData.GetDuration();
-
+			
             EditorGUI.BeginChangeCheck();
             
-            syncData.Sound = EditorGUILayout.ObjectField(syncData.Sound, typeof(AudioClip), false, null) as AudioClip;
-
-			if (GUILayout.Button("Play"))
-				PlayClip(syncData.Sound);
-
 			EditorGUILayout.Separator();
 
             syncData.ReferenceText = EditorGUILayout.TextArea(syncData.ReferenceText);
@@ -41,16 +39,17 @@ namespace FaceSync
             if (EditorGUI.EndChangeCheck())
                 EditorUtility.SetDirty(target);
 
-            if (GUILayout.Button("Autodetect"))
+            if (GUILayout.Button("Autodetect Keyframes"))
 				AutodetectWithRules();
 
-			if (GUILayout.Button("Clear"))
+			if (GUILayout.Button("Clear Keyframes"))
+			{
 				syncData.Keyframes.Clear();
+				mSelectedKeyframe = -1;
+			}
 
-			float border = 10;
-			float initY = 200;
-			float width = EditorGUIUtility.currentViewWidth;
-			Rect barRect = new Rect(border, initY, width - (border * 2), 5);
+
+			Rect barRect = new Rect(sBorder, sInitY, mWidth - (sBorder * 2), 5);
 			if (GUI.Button(barRect,""))
 			{
 				// TODO - calculate time by mousePosition;
@@ -59,32 +58,14 @@ namespace FaceSync
 				EditorUtility.SetDirty(target);
 			}
 
-			for (int i = 0; i < syncData.Keyframes.Count; ++i)
-			{
-				FaceSyncKeyframe keyframe = syncData.Keyframes[i];
-				float x = (width - (border * 2)) * (keyframe.Time / dataDuration);
-				string label = keyframe.BlendSet ? keyframe.BlendSet.Label : "!";
-				GUI.backgroundColor = i == mSelectedKeyframe ? Color.cyan : Color.grey;
-				if (GUI.Button(new Rect(border + x - 10, initY - 20, 20, 18), label))
-				{
-					mSelectedKeyframe = i;
-				}
-				GUI.Box(new Rect(border + x, initY, 1, 5), "");
-			}
+			EditorGUILayout.Separator();
 
-
-			if (syncData.Sound != null)
-			{
-				float audioPercentage = syncData.Sound.length / dataDuration;
-				GUI.backgroundColor = Color.cyan;
-				GUI.Box(new Rect(border, initY, (width - (border * 2)) * audioPercentage, 5), "");
-				GUI.backgroundColor = Color.white;
-
-			}
+			ShowSoundInfo(barRect);
+			ShowKeyframes();
 
 			if (mSelectedKeyframe >= 0)
 			{
-				GUILayout.BeginArea(new Rect(border, initY + 30, width - (border * 2), 200));
+				GUILayout.BeginArea(new Rect(sBorder, sInitY + 30, mWidth - (sBorder * 2), 200));
 				
 				ShowKeyframeData(syncData.Keyframes[mSelectedKeyframe], syncData.Sound.length);
 				
@@ -92,6 +73,75 @@ namespace FaceSync
 			}
 
 			serializedObject.ApplyModifiedProperties();
+		}
+
+		// --------------------------------------------------------------------
+
+		private void ShowKeyframes()
+		{
+			FaceSyncData syncData = target as FaceSyncData;
+			float totalDuration = syncData.GetDuration();
+			for (int i = 0; i < syncData.Keyframes.Count; ++i)
+			{
+				FaceSyncKeyframe keyframe = syncData.Keyframes[i];
+				float x = (mWidth - (sBorder * 2)) * (keyframe.Time / totalDuration);
+				string label = keyframe.BlendSet ? keyframe.BlendSet.Label : "!";
+				GUI.contentColor = keyframe.BlendSet ? Color.white : Color.red;
+				GUI.backgroundColor = i == mSelectedKeyframe ? Color.cyan : Color.grey;
+				if (GUI.Button(new Rect(sBorder + x - 10, sInitY - 20, 20, 18), label))
+				{
+					mSelectedKeyframe = i;
+				}
+				GUI.Box(new Rect(sBorder + x, sInitY, 1, 5), "");
+			}
+			GUI.contentColor = Color.white;
+			GUI.backgroundColor = Color.white;
+		}
+
+		// --------------------------------------------------------------------
+
+		private void ShowSoundInfo(Rect barRect)
+		{
+			FaceSyncData syncData = target as FaceSyncData;
+			float totalDuration = syncData.GetDuration();
+
+			syncData.Sound = EditorGUILayout.ObjectField(syncData.Sound, typeof(AudioClip), false, null) as AudioClip;
+			if (syncData.Sound != null)
+			{
+				float clipDuration = syncData.Sound.length;
+				float clipPreviewT = Time.realtimeSinceStartup - mClipStartTime;
+
+				EditorGUILayout.BeginHorizontal();
+
+				if (clipPreviewT >= clipDuration) {
+					if (GUILayout.Button("Play"))
+					{
+						PlayClip(syncData.Sound);
+						mClipStartTime = Time.realtimeSinceStartup;
+					}
+				}
+				else {
+					GUILayout.Label(clipPreviewT + "s");
+				}
+
+				EditorGUILayout.EndHorizontal();
+					
+				float audioPercentage = syncData.Sound.length / totalDuration;
+				GUI.backgroundColor = Color.cyan;
+				GUI.Box(new Rect(sBorder, sInitY, (mWidth - (sBorder * 2)) * audioPercentage, 5), "");
+				GUI.backgroundColor = Color.white;
+
+				if (clipPreviewT < clipDuration)
+				{
+					Rect clipT = new Rect(barRect);
+					clipT.x = clipT.x + (clipPreviewT / clipDuration) * clipT.width;
+					clipT.y -= 2f;
+					clipT.width = 1f;
+					clipT.height = 10f;
+					GUI.Box(clipT, "");
+					EditorUtility.SetDirty(target);
+				}
+			}
 		}
 
 		// --------------------------------------------------------------------
@@ -135,7 +185,7 @@ namespace FaceSync
 
 		// --------------------------------------------------------------------
 
-		public static void PlayClip(AudioClip clip)
+		public static void PlayClip(AudioClip clip) // TODO - Move this to a utils class
 		{
 			Assembly unityEditorAssembly = typeof(AudioImporter).Assembly;
 			Type audioUtilClass = unityEditorAssembly.GetType("UnityEditor.AudioUtil");
