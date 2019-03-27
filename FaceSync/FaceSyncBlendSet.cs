@@ -7,7 +7,7 @@ namespace FaceSync
 	[CreateAssetMenu(fileName = "BlendSet", menuName = "FaceSync/BlendSet")]
 	public class FaceSyncBlendSet : ScriptableObject
 	{
-		private static readonly float sDefaultBlendSetDuration = 0.5f;
+		private static readonly float sDefaultBlendSetDuration = 0.25f;
 
 		[Serializable]
 		public class BlendSetEntry

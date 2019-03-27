@@ -11,47 +11,111 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e7ce8275c83384ebcf7c8ca0077530, type: 3}
   m_Name: FSD_ConversationTest
   m_EditorClassIdentifier: 
-  Sound: {fileID: 8300000, guid: 9894d6d3dc8652440b9f9235e8fa9286, type: 3}
+  Sound: {fileID: 8300000, guid: eaa771635749ad8478fe4527cf275bed, type: 3}
+  ReferenceText: Master lang, if you know who I am then you know what I seek annd
+    how important it is that I succeed, can you assist in my quest
   Keyframes:
-  - Time: 0.13535146
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 0.27070293
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 0.67675734
+  - Time: 0
     BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
-  - Time: 0.8121088
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 1.2181633
+  - Time: 0.068958655
     BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
-  - Time: 1.7595692
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 2.300975
-    BlendSet: {fileID: 11400000, guid: 9bcd99053dd84924fbdc3fbc4c63bc44, type: 2}
-  - Time: 2.4363265
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 2.571678
-    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
-  - Time: 2.7070293
-    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
-  - Time: 3.2484353
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 3.6544898
-    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
-  - Time: 4.1958957
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 4.7373013
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 4.872653
-    BlendSet: {fileID: 11400000, guid: c7a86650d38472447bb5b02d53b91bb3, type: 2}
-  - Time: 5.143356
-    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
-  - Time: 5.4140587
+  - Time: 0.27583462
     BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
-  - Time: 5.820113
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 5.955465
-    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
-  - Time: 6.3615193
-    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
-  - Time: 6.632222
+  - Time: 0.4827106
+    BlendSet: {fileID: 11400000, guid: 9bcd99053dd84924fbdc3fbc4c63bc44, type: 2}
+  - Time: 0.55166924
     BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 0.89646256
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 0.9654212
+    BlendSet: {fileID: 11400000, guid: 6b454370ad0e084439b1fcdab6e18bc7, type: 2}
+  - Time: 1.1722972
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 1.2412559
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 1.5170904
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 1.5860491
+    BlendSet: {fileID: 11400000, guid: c7a86650d38472447bb5b02d53b91bb3, type: 2}
+  - Time: 1.7239665
+    BlendSet: {fileID: 11400000, guid: c7a86650d38472447bb5b02d53b91bb3, type: 2}
+  - Time: 1.8618838
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 1.999801
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 2.1377184
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 2.206677
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 2.3445945
+    BlendSet: {fileID: 11400000, guid: 9bcd99053dd84924fbdc3fbc4c63bc44, type: 2}
+  - Time: 2.4825118
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
+  - Time: 2.7583463
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 2.827305
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 3.1031396
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 3.1720982
+    BlendSet: {fileID: 11400000, guid: c7a86650d38472447bb5b02d53b91bb3, type: 2}
+  - Time: 3.3100157
+    BlendSet: {fileID: 11400000, guid: c7a86650d38472447bb5b02d53b91bb3, type: 2}
+  - Time: 3.447933
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 3.6548088
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 3.8616848
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
+  - Time: 3.9306436
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
+  - Time: 4.1375194
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 4.5512714
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 4.62023
+    BlendSet: {fileID: 11400000, guid: c7a86650d38472447bb5b02d53b91bb3, type: 2}
+  - Time: 4.7581472
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 4.827106
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 4.8960648
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 4.9650235
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 5.1718993
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 5.447734
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 5.65461
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 5.861486
+    BlendSet: {fileID: 11400000, guid: 9bcd99053dd84924fbdc3fbc4c63bc44, type: 2}
+  - Time: 5.9994035
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 6.2062793
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 6.413155
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 6.6200314
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
+  - Time: 6.6889896
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
+  - Time: 7.033783
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 7.3096175
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 7.3785763
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 7.516494
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 7.7233696
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 7.999204
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 8.20608
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 8.4819145
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 8.550874
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}

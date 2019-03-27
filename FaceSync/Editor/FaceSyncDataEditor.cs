@@ -9,12 +9,14 @@ namespace FaceSync
 	[CustomEditor(typeof(FaceSyncData))]
 	public class FaceSyncDataEditor : Editor
 	{
+		private readonly float sBorder = 20f;
+		private readonly float sInitY = 160f;
+
 		private int mSelectedKeyframe;
 		private float mClipStartTime;
-
-		private readonly float sBorder = 10;
-		private readonly float sInitY = 200;
 		private float mWidth;
+
+		// --------------------------------------------------------------------
 
 		public FaceSyncDataEditor()
 		{
@@ -29,28 +31,9 @@ namespace FaceSync
 			mWidth = EditorGUIUtility.currentViewWidth;
 
 			FaceSyncData syncData = target as FaceSyncData;
-			
-            EditorGUI.BeginChangeCheck();
-            
-			EditorGUILayout.Separator();
-
-            syncData.ReferenceText = EditorGUILayout.TextArea(syncData.ReferenceText);
-
-            if (EditorGUI.EndChangeCheck())
-                EditorUtility.SetDirty(target);
-
-            if (GUILayout.Button("Autodetect Keyframes"))
-				AutodetectWithRules();
-
-			if (GUILayout.Button("Clear Keyframes"))
-			{
-				syncData.Keyframes.Clear();
-				mSelectedKeyframe = -1;
-			}
-
 
 			Rect barRect = new Rect(sBorder, sInitY, mWidth - (sBorder * 2), 5);
-			if (GUI.Button(barRect,""))
+			if (GUI.Button(barRect, ""))
 			{
 				// TODO - calculate time by mousePosition;
 				syncData.Keyframes.Add(new FaceSyncKeyframe(0.5f));
@@ -60,15 +43,18 @@ namespace FaceSync
 
 			EditorGUILayout.Separator();
 
-			ShowSoundInfo(barRect);
-			ShowKeyframes();
+			ShowSoundUI(barRect);
+
+			EditorGUILayout.Separator();
+
+			ShowKeyframesUI();
 
 			if (mSelectedKeyframe >= 0)
 			{
 				GUILayout.BeginArea(new Rect(sBorder, sInitY + 30, mWidth - (sBorder * 2), 200));
-				
-				ShowKeyframeData(syncData.Keyframes[mSelectedKeyframe], syncData.Sound.length);
-				
+
+				ShowKeyframeDataUI(syncData.Keyframes[mSelectedKeyframe], syncData.Sound.length);
+
 				GUILayout.EndArea();
 			}
 
@@ -77,9 +63,29 @@ namespace FaceSync
 
 		// --------------------------------------------------------------------
 
-		private void ShowKeyframes()
+		private void ShowKeyframesUI()
 		{
 			FaceSyncData syncData = target as FaceSyncData;
+
+			EditorGUI.BeginChangeCheck();
+
+			syncData.ReferenceText = EditorGUILayout.TextArea(syncData.ReferenceText);
+
+			if (EditorGUI.EndChangeCheck())
+				EditorUtility.SetDirty(target);
+
+			EditorGUILayout.BeginHorizontal();
+			if (GUILayout.Button("Autodetect Keyframes"))
+				AutodetectWithRules();
+
+			if (GUILayout.Button("Clear Keyframes"))
+			{
+				syncData.Keyframes.Clear();
+				mSelectedKeyframe = -1;
+			}
+			EditorGUILayout.EndHorizontal();
+
+
 			float totalDuration = syncData.GetDuration();
 			for (int i = 0; i < syncData.Keyframes.Count; ++i)
 			{
@@ -100,32 +106,35 @@ namespace FaceSync
 
 		// --------------------------------------------------------------------
 
-		private void ShowSoundInfo(Rect barRect)
+		private void ShowSoundUI(Rect barRect)
 		{
 			FaceSyncData syncData = target as FaceSyncData;
 			float totalDuration = syncData.GetDuration();
 
+			EditorGUILayout.BeginHorizontal();
+
 			syncData.Sound = EditorGUILayout.ObjectField(syncData.Sound, typeof(AudioClip), false, null) as AudioClip;
+
 			if (syncData.Sound != null)
 			{
 				float clipDuration = syncData.Sound.length;
 				float clipPreviewT = Time.realtimeSinceStartup - mClipStartTime;
 
-				EditorGUILayout.BeginHorizontal();
-
-				if (clipPreviewT >= clipDuration) {
+				if (clipPreviewT >= clipDuration)
+				{
 					if (GUILayout.Button("Play"))
 					{
 						PlayClip(syncData.Sound);
 						mClipStartTime = Time.realtimeSinceStartup;
 					}
 				}
-				else {
+				else
+				{
 					GUILayout.Label(clipPreviewT + "s");
 				}
 
 				EditorGUILayout.EndHorizontal();
-					
+
 				float audioPercentage = syncData.Sound.length / totalDuration;
 				GUI.backgroundColor = Color.cyan;
 				GUI.Box(new Rect(sBorder, sInitY, (mWidth - (sBorder * 2)) * audioPercentage, 5), "");
@@ -142,11 +151,15 @@ namespace FaceSync
 					EditorUtility.SetDirty(target);
 				}
 			}
+			else
+			{
+				EditorGUILayout.EndHorizontal();
+			}
 		}
 
 		// --------------------------------------------------------------------
 
-		public void ShowKeyframeData(FaceSyncKeyframe keyframe, float maxTime)
+		public void ShowKeyframeDataUI(FaceSyncKeyframe keyframe, float maxTime)
 		{
 			EditorGUI.BeginChangeCheck();
 			keyframe.BlendSet = EditorGUILayout.ObjectField(keyframe.BlendSet, typeof(FaceSyncBlendSet), false, null) as FaceSyncBlendSet;
@@ -157,7 +170,7 @@ namespace FaceSync
 				(target as FaceSyncData).Keyframes.Remove(keyframe);
 				mSelectedKeyframe = -1;
 			}
-			
+
 			if (EditorGUI.EndChangeCheck())
 				EditorUtility.SetDirty(target);
 		}
@@ -172,7 +185,8 @@ namespace FaceSync
 			string lowerCaseText = syncData.ReferenceText.ToLower();
 			for (int i = 0; i < syncData.ReferenceText.Length; ++i)
 			{
-				foreach (var rule in rules) {
+				foreach (var rule in rules)
+				{
 					if (lowerCaseText.Substring(i).StartsWith(rule.Key.ToLower()))
 					{
 						FaceSyncKeyframe kf = new FaceSyncKeyframe(((float)i / syncData.ReferenceText.Length) * totalDuration);
