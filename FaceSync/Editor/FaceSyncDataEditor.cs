@@ -85,7 +85,6 @@ namespace FaceSync
 			}
 			EditorGUILayout.EndHorizontal();
 
-
 			float totalDuration = syncData.GetDuration();
 			for (int i = 0; i < syncData.Keyframes.Count; ++i)
 			{

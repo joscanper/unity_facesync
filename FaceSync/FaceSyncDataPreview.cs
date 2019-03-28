@@ -13,6 +13,8 @@ namespace FaceSync
 
 		private FaceSyncController mController;
 
+		// --------------------------------------------------------------------
+
 		public void Play()
 		{
 			if (!mController)

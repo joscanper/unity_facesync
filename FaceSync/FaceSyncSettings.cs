@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 
 #if UNITY_EDITOR
+
 using UnityEditor;
+
 #endif // UNITY_EDITOR
 
 using System;
@@ -10,7 +12,7 @@ using System;
 namespace FaceSync
 {
 	[Serializable]
-	[CreateAssetMenu(fileName = "Settings",menuName = "FaceSync/Settings")]
+	[CreateAssetMenu(fileName = "Settings", menuName = "FaceSync/Settings")]
 	public class FaceSyncSettings : ScriptableObject
 	{
 #if UNITY_EDITOR
@@ -26,7 +28,7 @@ namespace FaceSync
 			}
 
 			string path = "Assets/FaceSync/FaceSync/Data/Settings.asset";
-			
+
 			mSettings = AssetDatabase.LoadAssetAtPath(path, typeof(FaceSyncSettings)) as FaceSyncSettings;
 
 			if (mSettings == null)
@@ -37,6 +39,7 @@ namespace FaceSync
 
 			return mSettings;
 		}
+
 #endif // UNITY_EDITOR
 
 		public Dictionary<string, FaceSyncBlendSet> GetHashedRules()

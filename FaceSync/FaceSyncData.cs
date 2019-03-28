@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 
 namespace FaceSync
 {
-	[CreateAssetMenu(fileName ="FaceSyncData", menuName = "FaceSync/Sync Data")]
+	[CreateAssetMenu(fileName = "FaceSyncData", menuName = "FaceSync/Sync Data")]
 	public class FaceSyncData : ScriptableObject
 	{
 		public AudioClip Sound;
@@ -17,7 +15,7 @@ namespace FaceSync
 		public float GetDuration()
 		{
 			float duration = Sound ? Sound.length : 0f;
-			for(int i = 0; i < Keyframes.Count; ++i)
+			for (int i = 0; i < Keyframes.Count; ++i)
 			{
 				FaceSyncKeyframe keyframe = Keyframes[i];
 				if (keyframe.BlendSet)
@@ -25,8 +23,5 @@ namespace FaceSync
 			}
 			return duration;
 		}
-
-
 	}
 }
-

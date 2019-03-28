@@ -188,6 +188,18 @@ Prefab:
       propertyPath: m_BlendShapeWeights.Array.data[57]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[21]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[22]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[15]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
   m_IsPrefabParent: 0
@@ -341,6 +353,20 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100070, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
   m_PrefabInternal: {fileID: 651540430}
+--- !u!114 &1951534795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1951534793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9e100dc63ae4847b052eba0d222d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlendSet: {fileID: 11400000, guid: fe254ed379e61164ca49c9e38fa6ba71, type: 2}
+  MinTime: 0.5
+  MaxTime: 3
 --- !u!114 &1951534796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8306341a22d6ea46b7edf1dc4a4141f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RecoverSmoothness: 5
   Smoothness: 15
 --- !u!82 &1951534799
 AudioSource:

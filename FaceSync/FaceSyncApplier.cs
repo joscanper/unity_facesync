@@ -5,6 +5,7 @@ namespace FaceSync
 {
 	public class FaceSyncApplier : MonoBehaviour
 	{
+		public float RecoverSmoothness;
 		public float Smoothness;
 
 		private SkinnedMeshRenderer mMesh;
@@ -19,18 +20,15 @@ namespace FaceSync
 
 		// --------------------------------------------------------------------
 
-		private void CacheMesh()
+		private void Update()
 		{
-			if (!mMesh)
-				mMesh = GetComponent<SkinnedMeshRenderer>();
+			Apply();
 		}
 
 		// --------------------------------------------------------------------
 
 		public void ApplyBlendData(FaceSyncData data, float time)
 		{
-			CacheMesh();
-
 			foreach (FaceSyncKeyframe keyframe in data.Keyframes)
 			{
 				float keyframeDuration = keyframe.BlendSet.GetDuration();
@@ -40,8 +38,6 @@ namespace FaceSync
 					ApplyBlendSet(keyframe.BlendSet, keyframeProgress);
 				}
 			}
-
-			Apply();
 		}
 
 		// --------------------------------------------------------------------
@@ -52,14 +48,19 @@ namespace FaceSync
 			{
 				ApplyBlendShape(data.Key, data.Value);
 			}
+
+			// Keyframe drag
+			List<FaceSyncBlendShapeID> ids = new List<FaceSyncBlendShapeID>(applyData.Keys);
+			foreach (var id in ids)
+			{
+				applyData[id] = Mathf.Lerp(applyData[id], 0, RecoverSmoothness * Time.deltaTime);
+			}
 		}
 
 		// --------------------------------------------------------------------
 
 		public void ApplyBlendSet(FaceSyncBlendSet set, float t)
 		{
-			CacheMesh();
-
 			for (int i = 0; i < set.BlendShapes.Count; ++i)
 			{
 				if (!applyData.ContainsKey(set.BlendShapes[i].BlendShape))
@@ -73,7 +74,8 @@ namespace FaceSync
 
 		public void ApplyBlendShape(FaceSyncBlendShapeID id, float value)
 		{
-			CacheMesh();
+			if (!mMesh)
+				mMesh = GetComponent<SkinnedMeshRenderer>();
 
 			int index = mMesh.sharedMesh.GetBlendShapeIndex(id.Identifier);
 			mMesh.SetBlendShapeWeight(index, value);
