@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5a97c85586d324e8aa80c29c84f101, type: 3}
+  m_Name: BlendSet_LookRight
+  m_EditorClassIdentifier: 
+  Label: Creepy Smile
+  Color: {r: 1, g: 0, b: 0, a: 0}
+  BlendShapes:
+  - BlendShape: {fileID: 11400000, guid: 2516896f2bc226b49884abd118cfd30c, type: 2}
+    Value: 100
+  Duration: 1

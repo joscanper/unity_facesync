@@ -16,7 +16,8 @@ namespace FaceSync
 			public int Appliers;
 		}
 
-		private Dictionary<FaceSyncBlendShapeID, float> applyData = new Dictionary<FaceSyncBlendShapeID, float>();
+		private Dictionary<FaceSyncBlendShapeID, float> mApplyData = new Dictionary<FaceSyncBlendShapeID, float>();
+		private HashSet<FaceSyncBlendShapeID> mModifiedIds = new HashSet<FaceSyncBlendShapeID>();
 
 		// --------------------------------------------------------------------
 
@@ -31,7 +32,7 @@ namespace FaceSync
 		{
 			foreach (FaceSyncKeyframe keyframe in data.Keyframes)
 			{
-				float keyframeDuration = keyframe.BlendSet.GetDuration();
+				float keyframeDuration = keyframe.BlendSet.Duration;
 				if (time > keyframe.Time && time < (keyframe.Time + keyframeDuration))
 				{
 					float keyframeProgress = (time - keyframe.Time) / keyframeDuration;
@@ -44,16 +45,21 @@ namespace FaceSync
 
 		private void Apply()
 		{
-			foreach (var data in applyData)
+			foreach (var data in mApplyData)
 			{
 				ApplyBlendShape(data.Key, data.Value);
 			}
 
-			// Keyframe drag
-			List<FaceSyncBlendShapeID> ids = new List<FaceSyncBlendShapeID>(applyData.Keys);
-			foreach (var id in ids)
+			ApplyBlendShapeDrag();
+		}
+
+		// --------------------------------------------------------------------
+
+		private void ApplyBlendShapeDrag()
+		{
+			foreach (var id in mModifiedIds)
 			{
-				applyData[id] = Mathf.Lerp(applyData[id], 0, RecoverSmoothness * Time.deltaTime);
+				mApplyData[id] = Mathf.Lerp(mApplyData[id], 0, RecoverSmoothness * Time.deltaTime);
 			}
 		}
 
@@ -63,10 +69,10 @@ namespace FaceSync
 		{
 			for (int i = 0; i < set.BlendShapes.Count; ++i)
 			{
-				if (!applyData.ContainsKey(set.BlendShapes[i].BlendShape))
-					applyData.Add(set.BlendShapes[i].BlendShape, 0f);
+				if (!mApplyData.ContainsKey(set.BlendShapes[i].BlendShape))
+					mApplyData.Add(set.BlendShapes[i].BlendShape, 0f);
 
-				applyData[set.BlendShapes[i].BlendShape] = Mathf.Lerp(applyData[set.BlendShapes[i].BlendShape], set.BlendShapes[i].Value * Mathf.Clamp01(1f - t), Smoothness * Time.deltaTime);
+				mApplyData[set.BlendShapes[i].BlendShape] = Mathf.Lerp(mApplyData[set.BlendShapes[i].BlendShape], set.BlendShapes[i].Value * Mathf.Clamp01(1f - t), Smoothness * Time.deltaTime);
 			}
 		}
 
@@ -79,6 +85,8 @@ namespace FaceSync
 
 			int index = mMesh.sharedMesh.GetBlendShapeIndex(id.Identifier);
 			mMesh.SetBlendShapeWeight(index, value);
+
+			mModifiedIds.Add(id);
 		}
 	}
 }

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e7ce8275c83384ebcf7c8ca0077530, type: 3}
+  m_Name: FSD_ConversationTest2
+  m_EditorClassIdentifier: 
+  Sound: {fileID: 8300000, guid: 2354422d9ca1ef24783e06a101f02116, type: 3}
+  ReferenceText: You are hormonaly confused
+  Keyframes:
+  - Time: 0.09846154
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 0.19692308
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 0.39384615
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 0.519
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}
+  - Time: 0.671
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 0.946
+    BlendSet: {fileID: 11400000, guid: fa2b5684c6d25bf47bc5c88e0701c0a2, type: 2}
+  - Time: 1.021
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 1.179
+    BlendSet: {fileID: 11400000, guid: 2f335ae9fc7802d449fdf5aa042d4b13, type: 2}
+  - Time: 1.268
+    BlendSet: {fileID: 11400000, guid: 9bcd99053dd84924fbdc3fbc4c63bc44, type: 2}
+  - Time: 1.56
+    BlendSet: {fileID: 11400000, guid: df62c4e1db89d9b4690348aba5fa8c11, type: 2}
+  - Time: 1.643
+    BlendSet: {fileID: 11400000, guid: 6b454370ad0e084439b1fcdab6e18bc7, type: 2}
+  - Time: 1.749
+    BlendSet: {fileID: 11400000, guid: c053627c1d981a04197c5ce2c0821d23, type: 2}
+  - Time: 2.14
+    BlendSet: {fileID: 11400000, guid: e85b3099f5cae8e43becc0d3b63c8c25, type: 2}

@@ -19,7 +19,7 @@ namespace FaceSync
 			{
 				FaceSyncKeyframe keyframe = Keyframes[i];
 				if (keyframe.BlendSet)
-					duration = Mathf.Max(keyframe.Time + keyframe.BlendSet.GetDuration(), duration);
+					duration = Mathf.Max(keyframe.Time + keyframe.BlendSet.Duration, duration);
 			}
 			return duration;
 		}

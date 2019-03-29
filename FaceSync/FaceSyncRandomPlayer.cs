@@ -1,45 +1,60 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace FaceSync {
-
+namespace FaceSync
+{
 	public class FaceSyncRandomPlayer : MonoBehaviour
 	{
-		public FaceSyncBlendSet BlendSet;
-		public float MinTime;
-		public float MaxTime;
+		[System.Serializable]
+		public class RandomPlayerEntry
+		{
+			public FaceSyncBlendSet BlendSet;
+			public float MinTime;
+			public float MaxTime;
 
-		private float mNextBlink;
+			private float mNextPlay;
+
+			// --------------------------------------------------------------------
+
+			public void PrepareNextPlay()
+			{
+				mNextPlay = Time.realtimeSinceStartup + Random.Range(MinTime, MaxTime);
+			}
+
+			// --------------------------------------------------------------------
+
+			public void Update(FaceSyncApplier applier)
+			{
+				float t = (Time.realtimeSinceStartup - mNextPlay) / BlendSet.Duration;
+				if (t > 0f)
+				{
+					if (t > 1f)
+						PrepareNextPlay();
+					else
+						applier.ApplyBlendSet(BlendSet, t);
+				}
+			}
+		}
+
+		public List<RandomPlayerEntry> Entries;
+		
 		private FaceSyncApplier mApplier;
 
 		// --------------------------------------------------------------------
 
 		private void Awake()
 		{
-			mApplier = this.GetComponent<FaceSyncApplier>();
-			PrepareNextBlink();
+			mApplier = GetComponent<FaceSyncApplier>();
+			for (int i = 0; i < Entries.Count; ++i)
+				Entries[i].PrepareNextPlay();
 		}
 
 		// --------------------------------------------------------------------
 
-		private void PrepareNextBlink()
+		private void Update()
 		{
-			mNextBlink = Time.realtimeSinceStartup + Random.Range(MinTime, MaxTime);
-		}
-
-		// --------------------------------------------------------------------
-
-		void Update()
-		{
-			float t = (Time.realtimeSinceStartup - mNextBlink) / BlendSet.GetDuration();
-			if (t > 0f)
-			{
-				if (t > 1f)
-					PrepareNextBlink();
-				else
-					mApplier.ApplyBlendSet(BlendSet, t);
-			}
+			for (int i = 0; i < Entries.Count; ++i)
+				Entries[i].Update(mApplier);
 		}
 	}
-
 }

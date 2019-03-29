@@ -200,6 +200,14 @@ Prefab:
       propertyPath: m_BlendShapeWeights.Array.data[15]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: e41d2f613d3dba94a9afec040994b8f9, type: 2}
+    - target: {fileID: 13700000, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100002, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff977d686a18cab4eb92a531d05c9a71, type: 3}
   m_IsPrefabParent: 0
@@ -343,7 +351,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1292631479}
   m_LocalRotation: {x: 0.00000014911181, y: -0.99788666, z: 0.064978726, w: 0.0000022899292}
-  m_LocalPosition: {x: 0, y: 1.741, z: 0.611}
+  m_LocalPosition: {x: -0, y: 1.723, z: 0.475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -364,9 +372,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9e100dc63ae4847b052eba0d222d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlendSet: {fileID: 11400000, guid: fe254ed379e61164ca49c9e38fa6ba71, type: 2}
-  MinTime: 0.5
-  MaxTime: 3
+  Entries:
+  - BlendSet: {fileID: 11400000, guid: fe254ed379e61164ca49c9e38fa6ba71, type: 2}
+    MinTime: 0.5
+    MaxTime: 3
+  - BlendSet: {fileID: 11400000, guid: 9658fe4fb1620f04693a6fc785d862dd, type: 2}
+    MinTime: 1
+    MaxTime: 3
+  - BlendSet: {fileID: 11400000, guid: 7206796f64cf7144d89c8c494cb034b4, type: 2}
+    MinTime: 1
+    MaxTime: 3
+  - BlendSet: {fileID: 11400000, guid: a00e5453da8806748976796a4a89c712, type: 2}
+    MinTime: 1
+    MaxTime: 3
 --- !u!114 &1951534796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2e39cc5a3fd6a469d10579738b7b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 049e4b2e4d380884a9b1869a7058eddb, type: 2}
+  Data: {fileID: 11400000, guid: eefa0e33ed96d964594007854699f83f, type: 2}
   Progress: 0
 --- !u!114 &1951534797
 MonoBehaviour:
