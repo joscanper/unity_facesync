@@ -6,8 +6,7 @@ namespace FaceSync
 	public class FaceSyncApplier : MonoBehaviour
 	{
 		public float RecoverSmoothness;
-		public float Smoothness;
-
+		
 		private SkinnedMeshRenderer mMesh;
 
 		private struct BlendShapeValue
@@ -72,7 +71,7 @@ namespace FaceSync
 				if (!mApplyData.ContainsKey(set.BlendShapes[i].BlendShape))
 					mApplyData.Add(set.BlendShapes[i].BlendShape, 0f);
 
-				mApplyData[set.BlendShapes[i].BlendShape] = Mathf.Lerp(mApplyData[set.BlendShapes[i].BlendShape], set.BlendShapes[i].Value * Mathf.Clamp01(1f - t), Smoothness * Time.deltaTime);
+				mApplyData[set.BlendShapes[i].BlendShape] = Mathf.Lerp(mApplyData[set.BlendShapes[i].BlendShape], set.BlendShapes[i].Value, set.BlendShapes[i].BlendStrength * Time.deltaTime);
 			}
 		}
 

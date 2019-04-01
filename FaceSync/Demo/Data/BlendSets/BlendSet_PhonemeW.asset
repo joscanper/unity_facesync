@@ -15,28 +15,6 @@ MonoBehaviour:
   Color: {r: 1, g: 0, b: 0, a: 0}
   BlendShapes:
   - BlendShape: {fileID: 11400000, guid: f8c22a90fc01aa94987b8db054b34111, type: 2}
-    Curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 7.246442
-        outSlope: 7.246442
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 0.4945732
-        value: 150
-        inSlope: 0.034022443
-        outSlope: 0.034022443
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 0
-        inSlope: -4.686923
-        outSlope: -4.686923
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
     Value: 150
+    BlendStrength: 15
+  Duration: 0.1

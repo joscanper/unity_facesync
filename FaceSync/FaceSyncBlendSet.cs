@@ -12,11 +12,12 @@ namespace FaceSync
 		{
 			public FaceSyncBlendShapeID BlendShape;
 			public float Value;
+			public float BlendStrength = 10f;
 		}
 
 		public string Label;
-		public Color Color;
+		public Color Color = Color.white;
 		public List<BlendSetEntry> BlendShapes = new List<BlendSetEntry>();
-		public float Duration = 0.25f;
+		public float Duration = 0.1f;
 	}
 }

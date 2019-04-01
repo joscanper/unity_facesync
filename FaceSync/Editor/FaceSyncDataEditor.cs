@@ -28,15 +28,17 @@ namespace FaceSync
 		public override void OnInspectorGUI()
 		{
 			serializedObject.Update();
-			mWidth = EditorGUIUtility.currentViewWidth;
 
 			FaceSyncData syncData = target as FaceSyncData;
 
-			Rect barRect = new Rect(sBorder, sInitY, mWidth - (sBorder * 2), 5);
+			mWidth = EditorGUIUtility.currentViewWidth;
+			float clipDuration = syncData && syncData.Sound ? syncData.Sound.length : 1f; ;
+
+			Rect barRect = new Rect(sBorder, sInitY, mWidth - (sBorder * 2f), 5f);
 			if (GUI.Button(barRect, ""))
 			{
-				// TODO - calculate time by mousePosition;
-				syncData.Keyframes.Add(new FaceSyncKeyframe(0.5f));
+				float t = ((Event.current.mousePosition.x - barRect.x) / barRect.width) * clipDuration;
+				syncData.Keyframes.Add(new FaceSyncKeyframe(t));
 				mSelectedKeyframe = syncData.Keyframes.Count - 1;
 				EditorUtility.SetDirty(target);
 			}
@@ -53,7 +55,7 @@ namespace FaceSync
 			{
 				GUILayout.BeginArea(new Rect(sBorder, sInitY + 30, mWidth - (sBorder * 2), 200));
 
-				ShowKeyframeDataUI(syncData.Keyframes[mSelectedKeyframe], syncData.Sound.length);
+				ShowKeyframeDataUI(syncData.Keyframes[mSelectedKeyframe], clipDuration);
 
 				GUILayout.EndArea();
 			}
@@ -91,7 +93,7 @@ namespace FaceSync
 				FaceSyncKeyframe keyframe = syncData.Keyframes[i];
 				float x = (mWidth - (sBorder * 2)) * (keyframe.Time / totalDuration);
 				string label = keyframe.BlendSet ? keyframe.BlendSet.Label : "!";
-				GUI.contentColor = keyframe.BlendSet ? Color.white : Color.red;
+				GUI.contentColor = keyframe.BlendSet ? keyframe.BlendSet.Color : Color.red;
 				GUI.backgroundColor = i == mSelectedKeyframe ? Color.cyan : Color.grey;
 				if (GUI.Button(new Rect(sBorder + x - 10, sInitY - 20, 20, 18), label))
 				{
@@ -113,7 +115,7 @@ namespace FaceSync
 			EditorGUILayout.BeginHorizontal();
 
 			syncData.Sound = EditorGUILayout.ObjectField(syncData.Sound, typeof(AudioClip), false, null) as AudioClip;
-
+			
 			if (syncData.Sound != null)
 			{
 				float clipDuration = syncData.Sound.length;

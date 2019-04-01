@@ -15,5 +15,6 @@ MonoBehaviour:
   Color: {r: 1, g: 0, b: 0, a: 0}
   BlendShapes:
   - BlendShape: {fileID: 11400000, guid: d4d16d116870dbd46a1fc6bac273c058, type: 2}
-    Value: 100
+    Value: 120
+    BlendStrength: 5
   Duration: 1
