@@ -63,7 +63,7 @@ To create a new FaceSyncData asset right click on your Project view : Create/Fac
 
 First, assign the audio clip that will be used, second, write the dialog that will be used to detect phonemes.
 
-If you have setup the detection rules properly, click Detect Keyframes ant he timeline will get filled with blendsets.
+If you have setup the detection rules properly, click "Detect Keyframes" ant the timeline will get filled with blendsets.
 
 ![](https://github.com/joscanper/untiy_facesync/blob/master/FaceSync/Demo/example.png)
 
