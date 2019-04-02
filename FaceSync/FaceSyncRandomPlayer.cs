@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace FaceSync
 {
+    
+    [RequireComponent(typeof(FaceSyncApplier))]
 	public class FaceSyncRandomPlayer : MonoBehaviour
 	{
 		[System.Serializable]
