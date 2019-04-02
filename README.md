@@ -15,7 +15,7 @@ Before starting you will need a mesh exported with blendshapes. Blendshapes will
 
 For each blendshape you are planning to use from your mesh you will need a BlendShapeID.
 
-To create a new BlendShapeID asset right click on your Project view : Create/FaceSync/BlendShapeID
+To create a new FaceSyncBlendShapeID asset right click on your Project view : Create/FaceSync/BlendShapeID
 
 Fill the `Identifier` field with the name of the mesh blendshape this asset refers to (It has to be one of the BlendShapes that appear in the SkinnnedMeshRenderer list).
 
@@ -29,13 +29,13 @@ The following mouth alphabet would require 6 BlendSets.
 
 ![](http://image.wikifoundry.com/image/2/eX6-NiE4BkBk2Ter_j78MQ62335/GW400H349)
 
-To create a new BlendSet asset right click on your Project view : Create/FaceSync/BlendSet
+To create a new FaceSyncBlendSet asset right click on your Project view : Create/FaceSync/BlendSet
 
 Once created, add the BlendShapeIDs you want to use and adjust their values.
 
 A BlendSet will need one or more BlendShapeIDs with their respective values in order to be shown on your character.
 
-**[Talk about preview here!]**
+In order to preview the BlendSet on your character, attach the component FaceSyncBlendSetPreview to the object with the SkinnedMeshRenderer and assign the data file.
 
 Keep adding BlendSets and BlendShapeIDs until you have a complete mouth alphabet (Check the ones used in the demo).
 
@@ -45,7 +45,7 @@ You can use BlendSets for other things like expressions, blinking, looking aroun
 
 Detection rules are used as a substitute to speech recognition (it might be added in a future) and will speed up your workflow since you won't need to assign all BlendSets manually for a dialog line. For example you can write "Hello, how are you?" and autodetection will search for suitable BlendSets to use for that line.
 
-To create a new AutodetectRules asset right click on your Project view : Create/FaceSync/Autodetect Rules
+To create a new FaceSyncDetectionRules asset right click on your Project view : Create/FaceSync/Detection Rules
 
 Now you can add multiple rules to it like : "a" for your blendset that plays that vowel or "th" for the corresponding blendset.
 
@@ -59,9 +59,15 @@ Finally, add your rules to FaceSync Settings asset, located at `FaceSync/Data/Se
 
 With BlendShapeIDs, BlendSets and detection rules configured you can now create a FaceSyncData asset which will contain your character dialog.
 
--TODO-
+To create a new FaceSyncData asset right click on your Project view : Create/FaceSync/Sync Data
 
-**[Talk about preview here!]**
+First, assign the audio clip that will be used, second, write the dialog that will be used to detect phonemes.
+
+If you have setup the detection rules properly, click Detect Keyframes ant he timeline will get filled with blendsets.
+
+![](https://github.com/joscanper/untiy_facesync/blob/master/FaceSync/Demo/example.png)
+
+In order to preview the sync data on your character, attach the component FaceSyncDataPreview to the object with the SkinnedMeshRenderer, assign the data file, run your game and click the "Play" on the component.
 
 ## Blinking & eyes movement
 
