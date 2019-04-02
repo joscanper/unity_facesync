@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5a97c85586d324e8aa80c29c84f101, type: 3}
   m_Name: BlendSet_CreepySmile
   m_EditorClassIdentifier: 
-  Label: Creepy Smile
-  Color: {r: 1, g: 0, b: 0, a: 0}
+  Label: )
+  Color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
   BlendShapes:
   - BlendShape: {fileID: 11400000, guid: 93d4ce0e6dab1c0438c5a27fd8ace503, type: 2}
     Value: 125

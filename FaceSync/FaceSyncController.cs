@@ -9,6 +9,7 @@ namespace FaceSync
 	[RequireComponent(typeof(AudioSource))]
 	public class FaceSyncController : MonoBehaviour
 	{
+		private static readonly int sDefaultDataSize = 5;
 
 		private struct DataEntry
 		{
@@ -21,12 +22,22 @@ namespace FaceSync
 
 		private AudioSource mSource;
 		private FaceSyncApplier mApplier;
-		private List<DataEntry> mDataToApply = new List<DataEntry>(5);
+		private List<DataEntry> mDataToApply = new List<DataEntry>(sDefaultDataSize);
+		private Stack<DataEntry> mDataPool = new Stack<DataEntry>(sDefaultDataSize);
+
+		// --------------------------------------------------------------------
 
 		private void Awake()
 		{
 			CacheComponents();
+
+			for (int i = 0; i < sDefaultDataSize; ++i)
+			{
+				mDataPool.Push(new DataEntry());
+			}
 		}
+
+		// --------------------------------------------------------------------
 
 		private void CacheComponents()
 		{
@@ -34,20 +45,20 @@ namespace FaceSync
 			if (!mApplier) mApplier = GetComponent<FaceSyncApplier>();
 		}
 
+		// --------------------------------------------------------------------
+
 		public void PlayData(FaceSyncData data)
 		{
 			CacheComponents();
 
-			DataEntry entry = new DataEntry {
-				Time = 0f,
-				Data = data,
-				Duration = data.GetDuration()
-			};
+			DataEntry entry = GetEntry(data);
 			mDataToApply.Add(entry);
 
 			if (data.Sound)
 				mSource.PlayOneShot(data.Sound);
 		}
+
+		// --------------------------------------------------------------------
 
 		private void Update()
 		{
@@ -61,7 +72,7 @@ namespace FaceSync
 				
 				if (entry.HasFinished)
 				{
-					mDataToApply.RemoveAt(i);
+					RemoveEntry(i);
 					--i;
 				}
 				else
@@ -70,6 +81,26 @@ namespace FaceSync
 				}
 			}
 				
+		}
+
+		// --------------------------------------------------------------------
+
+		private DataEntry GetEntry(FaceSyncData data)
+		{
+			DataEntry entry = mDataPool.Count > 0 ? mDataPool.Pop() : new DataEntry();
+			entry.Time = 0f;
+			entry.Data = data;
+			entry.Duration = data.GetDuration();
+			return entry;
+		}
+
+		// --------------------------------------------------------------------
+
+		private void RemoveEntry(int index)
+		{
+			DataEntry entry = mDataToApply[index];
+			mDataPool.Push(entry);
+			mDataToApply.RemoveAt(index);
 		}
 	}
 

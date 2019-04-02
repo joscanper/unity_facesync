@@ -32,32 +32,56 @@ namespace FaceSync
 			FaceSyncData syncData = target as FaceSyncData;
 
 			mWidth = EditorGUIUtility.currentViewWidth;
-			float clipDuration = syncData && syncData.Sound ? syncData.Sound.length : 1f; ;
-
 			Rect barRect = new Rect(sBorder, sInitY, mWidth - (sBorder * 2f), 5f);
-			if (GUI.Button(barRect, ""))
-			{
-				float t = ((Event.current.mousePosition.x - barRect.x) / barRect.width) * clipDuration;
-				syncData.Keyframes.Add(new FaceSyncKeyframe(t));
-				mSelectedKeyframe = syncData.Keyframes.Count - 1;
-				EditorUtility.SetDirty(target);
-			}
+			
 
 			EditorGUILayout.Separator();
 
 			ShowSoundUI(barRect);
 
-			EditorGUILayout.Separator();
+			if (syncData.Sound != null)
+			{ 
+				EditorGUILayout.Separator();
 
-			ShowKeyframesUI();
+				ShowKeyframesUI();
 
-			if (mSelectedKeyframe >= 0)
-			{
-				GUILayout.BeginArea(new Rect(sBorder, sInitY + 30, mWidth - (sBorder * 2), 200));
+				float clipDuration = syncData && syncData.Sound ? syncData.Sound.length : 1f;
+				if (syncData.Sound != null)
+				{
+					if (GUI.Button(barRect, ""))
+					{
+						float t = ((Event.current.mousePosition.x - barRect.x) / barRect.width) * clipDuration;
+						syncData.Keyframes.Add(new FaceSyncKeyframe(t));
+						mSelectedKeyframe = syncData.Keyframes.Count - 1;
+						EditorUtility.SetDirty(target);
+					}
 
-				ShowKeyframeDataUI(syncData.Keyframes[mSelectedKeyframe], clipDuration);
+					float totalDuration = syncData.GetDuration();
+					if (totalDuration > 0)
+					{
+						float audioPercentage = syncData.Sound.length / totalDuration;
+						GUI.backgroundColor = Color.cyan;
+						GUI.Box(new Rect(sBorder, sInitY, (mWidth - (sBorder * 2)) * audioPercentage, 5), "");
+						GUI.backgroundColor = Color.white;
+					}
+				}
 
-				GUILayout.EndArea();
+				if (mSelectedKeyframe >= 0)
+				{
+					GUILayout.BeginArea(new Rect(sBorder, sInitY + 30, mWidth - (sBorder * 2), 200));
+
+					ShowKeyframeDataUI(syncData.Keyframes[mSelectedKeyframe], clipDuration);
+
+					GUILayout.EndArea();
+				}
+				else
+				{
+					GUILayout.BeginArea(new Rect(sBorder, sInitY + 30, mWidth - (sBorder * 2), 200));
+
+					GUILayout.Label("Select a keyframe or click on the timeline to create a new keyframe.");
+
+					GUILayout.EndArea();
+				}
 			}
 
 			serializedObject.ApplyModifiedProperties();
@@ -77,7 +101,7 @@ namespace FaceSync
 				EditorUtility.SetDirty(target);
 
 			EditorGUILayout.BeginHorizontal();
-			if (GUILayout.Button("Autodetect Keyframes"))
+			if (GUILayout.Button("Detect Keyframes"))
 				AutodetectWithRules();
 
 			if (GUILayout.Button("Clear Keyframes"))
@@ -93,8 +117,8 @@ namespace FaceSync
 				FaceSyncKeyframe keyframe = syncData.Keyframes[i];
 				float x = (mWidth - (sBorder * 2)) * (keyframe.Time / totalDuration);
 				string label = keyframe.BlendSet ? keyframe.BlendSet.Label : "!";
-				GUI.contentColor = keyframe.BlendSet ? keyframe.BlendSet.Color : Color.red;
-				GUI.backgroundColor = i == mSelectedKeyframe ? Color.cyan : Color.grey;
+				GUI.contentColor = keyframe.BlendSet ? Color.white : Color.red;
+				GUI.backgroundColor = i == mSelectedKeyframe ? Color.cyan : (keyframe.BlendSet ? keyframe.BlendSet.Color : Color.white);
 				if (GUI.Button(new Rect(sBorder + x - 10, sInitY - 20, 20, 18), label))
 				{
 					mSelectedKeyframe = i;
@@ -110,8 +134,7 @@ namespace FaceSync
 		private void ShowSoundUI(Rect barRect)
 		{
 			FaceSyncData syncData = target as FaceSyncData;
-			float totalDuration = syncData.GetDuration();
-
+			
 			EditorGUILayout.BeginHorizontal();
 
 			syncData.Sound = EditorGUILayout.ObjectField(syncData.Sound, typeof(AudioClip), false, null) as AudioClip;
@@ -135,11 +158,6 @@ namespace FaceSync
 				}
 
 				EditorGUILayout.EndHorizontal();
-
-				float audioPercentage = syncData.Sound.length / totalDuration;
-				GUI.backgroundColor = Color.cyan;
-				GUI.Box(new Rect(sBorder, sInitY, (mWidth - (sBorder * 2)) * audioPercentage, 5), "");
-				GUI.backgroundColor = Color.white;
 
 				if (clipPreviewT < clipDuration)
 				{
@@ -181,6 +199,10 @@ namespace FaceSync
 		private void AutodetectWithRules() // TODO - Move this to an autodetection thing
 		{
 			FaceSyncData syncData = target as FaceSyncData;
+
+			if (syncData.ReferenceText == null || syncData.ReferenceText.Length == 0)
+				return;
+
 			Dictionary<string, FaceSyncBlendSet> rules = FaceSyncSettings.GetSettings().GetHashedRules();
 			float totalDuration = syncData.GetDuration();
 			string lowerCaseText = syncData.ReferenceText.ToLower();

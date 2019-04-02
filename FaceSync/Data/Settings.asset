@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee43d98db3ff86e4e909ba45cce137da, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  AutodetectRules:
+  DetectionRules:
   - {fileID: 11400000, guid: 530a42fc67babaa4b82b886e21c76466, type: 2}

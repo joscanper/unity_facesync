@@ -6,15 +6,8 @@ namespace FaceSync
 	public class FaceSyncApplier : MonoBehaviour
 	{
 		public float RecoverSmoothness;
-		
+
 		private SkinnedMeshRenderer mMesh;
-
-		private struct BlendShapeValue
-		{
-			public float AccumulativeValue;
-			public int Appliers;
-		}
-
 		private Dictionary<FaceSyncBlendShapeID, float> mApplyData = new Dictionary<FaceSyncBlendShapeID, float>();
 		private HashSet<FaceSyncBlendShapeID> mModifiedIds = new HashSet<FaceSyncBlendShapeID>();
 
@@ -29,8 +22,9 @@ namespace FaceSync
 
 		public void ApplyBlendData(FaceSyncData data, float time)
 		{
-			foreach (FaceSyncKeyframe keyframe in data.Keyframes)
+			for (int i = 0; i < data.Keyframes.Count; ++i)
 			{
+				FaceSyncKeyframe keyframe = data.Keyframes[i];
 				float keyframeDuration = keyframe.BlendSet.Duration;
 				if (time > keyframe.Time && time < (keyframe.Time + keyframeDuration))
 				{

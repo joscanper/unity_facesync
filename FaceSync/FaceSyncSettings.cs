@@ -16,7 +16,7 @@ namespace FaceSync
 	public class FaceSyncSettings : ScriptableObject
 	{
 #if UNITY_EDITOR
-		public FaceSyncAutodetectRules[] AutodetectRules;
+		public FaceSyncDetectionRules[] DetectionRules;
 
 		private static FaceSyncSettings mSettings;
 
@@ -45,9 +45,9 @@ namespace FaceSync
 		public Dictionary<string, FaceSyncBlendSet> GetHashedRules()
 		{
 			Dictionary<string, FaceSyncBlendSet> ruleDict = new Dictionary<string, FaceSyncBlendSet>();
-			foreach (FaceSyncAutodetectRules rules in AutodetectRules)
+			foreach (FaceSyncDetectionRules rules in DetectionRules)
 			{
-				foreach (FaceSyncAutodetectRules.RuleEntry entry in rules.Rules)
+				foreach (FaceSyncDetectionRules.RuleEntry entry in rules.Rules)
 				{
 					ruleDict.Add(entry.Identifier, entry.Set);
 				}

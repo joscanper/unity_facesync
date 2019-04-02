@@ -21,8 +21,9 @@ namespace FaceSync
 
 			if (BlendSet)
 			{
-				foreach (FaceSyncBlendSet.BlendSetEntry entry in BlendSet.BlendShapes)
+				for (int i = 0; i < BlendSet.BlendShapes.Count; ++i)
 				{
+					FaceSyncBlendSet.BlendSetEntry entry = BlendSet.BlendShapes[i];
 					if (entry != null)
 						mApplier.ApplyBlendShape(entry.BlendShape, entry.Value);
 				}

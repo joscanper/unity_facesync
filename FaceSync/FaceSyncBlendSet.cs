@@ -16,7 +16,7 @@ namespace FaceSync
 		}
 
 		public string Label;
-		public Color Color = Color.white;
+		public Color Color = Color.grey;
 		public List<BlendSetEntry> BlendShapes = new List<BlendSetEntry>();
 		public float Duration = 0.1f;
 	}

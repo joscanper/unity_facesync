@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace FaceSync
 {
-	[CreateAssetMenu(fileName = "Settings", menuName = "FaceSync/Autodetect Rules")]
-	public class FaceSyncAutodetectRules : ScriptableObject
+	[CreateAssetMenu(fileName = "Settings", menuName = "FaceSync/Detection Rules")]
+	public class FaceSyncDetectionRules : ScriptableObject
 	{
 		[Serializable]
 		public class RuleEntry

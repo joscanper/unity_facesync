@@ -1,12 +1,13 @@
 ﻿#if UNITY_EDITOR
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-namespace FaceSync { 
+namespace FaceSync
+{
 	public class FaceSyncUtils
 	{
-		// create all intermediate directories for an asset name
+		// Create all intermediate directories for an asset name
 		public static void CreatePath(string path)
 		{
 			string[] components = path.Split('/');
@@ -33,4 +34,5 @@ namespace FaceSync {
 		}
 	}
 }
+
 #endif

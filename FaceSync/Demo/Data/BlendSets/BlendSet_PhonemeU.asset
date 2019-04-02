@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: BlendSet_PhonemeU
   m_EditorClassIdentifier: 
   Label: U
-  Color: {r: 1, g: 0, b: 0, a: 0}
+  Color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
   BlendShapes:
   - BlendShape: {fileID: 11400000, guid: f8c22a90fc01aa94987b8db054b34111, type: 2}
     Value: 100
