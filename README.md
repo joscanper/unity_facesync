@@ -71,6 +71,8 @@ In order to preview the sync data on your character, attach the component FaceSy
 
 ## Blinking & eyes movement
 
--TODO-
+In order to add blinking to your character, create a BlendSet with the character eyes closed (Again, check the demo).
 
-First make sure you have setup your blendshape and detection rules properly (or simply use the provided demo scene).
+You can attach the component FaceSyncRandomPlayer to your SkinnedMeshRenderer and add the blink BlendSet to the `Entries` list.
+
+Similarly, if your character eyes are controlled with BlendShapes you can create 4 BlendSets for looking up, down, left and right and add them to the FaceSyncRandomPlayer component.
